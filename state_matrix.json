@@ -1,0 +1,11 @@
+{
+  "system_meta": {
+    "version": "2026.4.1",
+    "compliance": "FHIR-R4_UEFI-HX"
+  },
+  "gpu_telemetry_profile": {
+    "target_execution_budget_microseconds": 1500,
+    "last_measured_execution_time": 425,
+    "pipeline_saturation_status": "NOMINAL"
+  }
+}
