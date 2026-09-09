@@ -46,3 +46,16 @@ stress-test-loop: check-env
 clean-matrix:
 	@rm -f $(DATA_DIR)/state_matrix.json
 	@echo "[+] Stale data matrices flushed cleanly from the workspace."
+
+# Append these lines to your existing central Makefile workspace interface
+
+.PHONY: test-chart-layout deploy-daemon
+
+# Automated markdown layout compliance validation gate
+test-chart-layout:
+	@$(PYTHON) tools/test_chart_layout.py
+
+# Mainframe service installation sequence trigger hook
+deploy-daemon:
+	@echo "[*] Preparing environment for automated daemon scaling injection..."
+	@sudo bash run_pipeline.sh
