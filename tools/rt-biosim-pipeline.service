@@ -1,0 +1,31 @@
+[Unit]
+Description=RT Unified Biosimulation Matrix Validation and Scaling Engine
+After=network.target target_proteins.service
+Documentation=https://github.com
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/workspace/Metastasis-Tracker-AI
+Environment=PYTHONPATH=/workspace/Metastasis-Tracker-AI/src
+Environment=PYTHONUNBUFFERED=1
+
+# Execute the pre-compiled Makefile lifecycle pipeline continuously
+ExecStart=/usr/bin/make -C /workspace/Metastasis-Tracker-AI stress-test-loop
+
+# High-availability process restart policies
+Restart=always
+RestartSec=5
+TimeoutStopSec=10
+
+# Resource usage boundaries to safeguard server mainframe performance
+CPUWeight=200
+MemoryHigh=2G
+MemoryMax=3G
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=rt-biosim-engine
+
+[Install]
+WantedBy=multi-user.target
