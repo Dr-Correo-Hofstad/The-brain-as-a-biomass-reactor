@@ -1,0 +1,8 @@
+// HLSL Material Vertex Shader Array Parsing Kernel
+// Input parameter: VertexID (Standard absolute mesh vertex lookup index)
+
+// Retrieve the corresponding packed deformation offset from the array register
+float4 PositionOffset = DeformationVectorArray[VertexID % MaxShaderArrayElements];
+
+// Return the geometric translation vector directly to the world position offset pin
+return float3(PositionOffset.x, PositionOffset.y, PositionOffset.z);
